@@ -22,6 +22,10 @@ import okhttp3.Response
 import com.mufeng.taiwanhighway.data.TrafficResponse
 import android.widget.Toast
 
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
 private lateinit var binding: ActivityHighwayBinding
 private lateinit var viewAdapter: HighwayAdapter
 private lateinit var viewManager: RecyclerView.LayoutManager
@@ -52,6 +56,13 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
         binding.swipeRefresh.setOnRefreshListener {
             getTrafficInfo()
         }
+        // 點擊重新載入按鈕
+        binding.btnRetry.setOnClickListener {
+            getTrafficInfo()
+        }
+
+        // 即使 API 失敗，也要正常顯示國道名稱
+        binding.tv.text = intent.getStringExtra("road2") ?: "國道路況"
 
         getTrafficInfo()
         getImage()
@@ -63,6 +74,27 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
     }
 
     private var isLoadingTraffic = false
+
+    private enum class TrafficUiState {
+        LOADING,
+        SUCCESS,
+        EMPTY,
+        ERROR
+    }
+
+    private fun showTrafficState(state: TrafficUiState) {
+        binding.progressBar.visibility =
+            if (state == TrafficUiState.LOADING) View.VISIBLE else View.GONE
+
+        binding.recycleView.visibility =
+            if (state == TrafficUiState.SUCCESS) View.VISIBLE else View.GONE
+
+        binding.tvEmpty.visibility =
+            if (state == TrafficUiState.EMPTY) View.VISIBLE else View.GONE
+
+        binding.errorState.visibility =
+            if (state == TrafficUiState.ERROR) View.VISIBLE else View.GONE
+    }
 
     private fun initView() {
 
@@ -113,37 +145,6 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
 
     }
 
-//    private fun getTrafficInfo() {
-//        val road2 =intent.getStringExtra("road2")
-//
-//        OkHttpUtil.mOkHttpUtil.getAsync(TRAFFIC_DATA_URL, object : OkHttpUtil.ICallback {
-//            override fun onResponse(response: Response) {
-//                val trafficData = response.body?.string()
-//
-////                trafficInfo = Gson().fromJson(trafficData, TrafficInfo::class.java)
-//                trafficInfo = Gson().fromJson(
-//                    trafficData,
-//                    TrafficResponse::class.java
-//                ).result
-//
-//                runOnUiThread{
-//                    //將 Okhttp 獲取到的回應值，指定到畫面的 TextView 元件中
-//
-////                    viewAdapter.trafficList =trafficInfo
-//                    updateRecycleView()
-//                    binding.tv.text=road2
-//                    binding.progressBar.visibility = View.GONE
-//
-//                }
-//            }
-//
-//            override fun onFailure(e: okio.IOException) {
-//                Log.d("Jia", "onFailure: $e")
-//                binding.progressBar.visibility = View.GONE
-//            }
-//        })
-//    }
-
     private fun getTrafficInfo() {
         val road2 = intent.getStringExtra("road2")
 
@@ -151,11 +152,9 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
 
         isLoadingTraffic = true
 
-        if (!binding.swipeRefresh.isRefreshing) {
-            binding.progressBar.visibility = View.VISIBLE
+        if (trafficInfo == null) {
+            showTrafficState(TrafficUiState.LOADING)
         }
-
-        binding.progressBar.visibility = View.VISIBLE
 
         OkHttpUtil.mOkHttpUtil.getAsync(
             TRAFFIC_DATA_URL,
@@ -186,9 +185,8 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
                             }
 
                             trafficInfo = newInfo
-                            binding.tv.text = road2
+                            updateLastSuccessTime()
                             updateRecycleView()
-//                            binding.progressBar.visibility = View.GONE
                             finishTrafficLoading()
                         }
 
@@ -217,8 +215,19 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
 
         if (isFinishing || isDestroyed) return
 
-        binding.progressBar.visibility = View.GONE
         binding.swipeRefresh.isRefreshing = false
+    }
+
+    private fun updateLastSuccessTime() {
+        val formatter = SimpleDateFormat(
+            "MM/dd HH:mm:ss",
+            Locale.getDefault()
+        )
+
+        val time = formatter.format(Date())
+
+        binding.tvLastUpdated.text = "最後成功取得：$time"
+        binding.tvLastUpdated.visibility = View.VISIBLE
     }
 
     private fun showTrafficError() {
@@ -226,11 +235,15 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
 
         if (isFinishing || isDestroyed) return
 
-        Toast.makeText(
-            this,
-            "路況載入失敗，請檢查網路後重試",
-            Toast.LENGTH_LONG
-        ).show()
+        if (trafficInfo == null) {
+            showTrafficState(TrafficUiState.ERROR)
+        } else {
+            Toast.makeText(
+                this,
+                "路況更新失敗，顯示上次取得的資料",
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     fun getImage(){
@@ -257,15 +270,6 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
 
     }
 
-//    private fun updateRecycleView() {
-//        val road= intent.getStringExtra("road")
-//        var filterData = trafficInfo?.filter { it.areaNm == road && it.direction== currentDirection }
-//
-//        if (filterData!=null){
-//            viewAdapter.trafficList = filterData
-//        }
-//    }
-
     private fun updateRecycleView() {
         val road = intent.getStringExtra("road")
 
@@ -277,13 +281,9 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
         viewAdapter.trafficList = filterData
 
         if (filterData.isEmpty()) {
-            // 沒有符合條件的事件
-            binding.recycleView.visibility = View.GONE
-            binding.tvEmpty.visibility = View.VISIBLE
+            showTrafficState(TrafficUiState.EMPTY)
         } else {
-            // 有符合條件的事件
-            binding.recycleView.visibility = View.VISIBLE
-            binding.tvEmpty.visibility = View.GONE
+            showTrafficState(TrafficUiState.SUCCESS)
         }
     }
 
