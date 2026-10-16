@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FreewayActivity">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="看路況"
+        android:paddingTop="10dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_back"
+        android:textColor="@color/black"
+        android:background="@drawable/button_bg_style"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <Button
+            android:id="@+id/btn_freewayNo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="國道一號"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_freewayNo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="國道二號"
+            app:layout_constraintTop_toBottomOf="@id/btn_freewayNo1"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_freewayNo3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="國道三號"
+            app:layout_constraintTop_toBottomOf="@id/btn_freewayNo2"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_freewayNo4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="國道四號"
+            app:layout_constraintTop_toBottomOf="@id/btn_freewayNo3"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_freewayNo5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="國道五號"
+            app:layout_constraintTop_toBottomOf="@id/btn_freewayNo4"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:id="@+id/btn_freewayNo6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="國道六號"
+            app:layout_constraintTop_toBottomOf="@id/btn_freewayNo5"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+        <Button
+            android:id="@+id/btn_freewayNo8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="國道八號"
+            app:layout_constraintTop_toBottomOf="@id/btn_freewayNo6"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+
+
+        <Button
+            android:id="@+id/btn_freewayNo10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="國道十號"
+            app:layout_constraintTop_toBottomOf="@id/btn_freewayNo8"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
