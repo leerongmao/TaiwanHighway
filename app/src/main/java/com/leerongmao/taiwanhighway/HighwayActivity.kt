@@ -20,6 +20,7 @@ import okhttp3.Response
 
 import com.leerongmao.taiwanhighway.data.TrafficResponse
 import android.widget.Toast
+import com.leerongmao.taiwanhighway.Util.RegionUtil
 
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -73,6 +74,7 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
     }
 
     private var isLoadingTraffic = false
+    private var currentRegion = "全台"
 
     private enum class TrafficUiState {
         LOADING,
@@ -137,6 +139,42 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
             layoutManager = viewManager
             adapter = viewAdapter
         }
+
+        // Beta 3.1.2：初始化路況區域選單
+        val regionAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            RegionUtil.getAllRegionName()
+        )
+
+        regionAdapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item
+        )
+
+        binding.spinnerRegion.adapter = regionAdapter
+        binding.spinnerRegion.setSelection(0)
+
+        // 切換路況區域時，重新篩選現有資料
+        binding.spinnerRegion.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    currentRegion = binding.spinnerRegion.selectedItem.toString()
+
+                    if (trafficInfo != null) {
+                        updateRecycleView()
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+            }
+
     }
 
     private fun setDefaultRegion() {
@@ -271,9 +309,15 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
     private fun updateRecycleView() {
         val road = intent.getStringExtra("road")
 
+        // 將中文地區轉成 API 代碼
+        // 全台會回傳 null，代表不限制區域
+        val regionCode = RegionUtil.getRegionCodeByName(currentRegion)
+
+        // 三條件篩選：國道 + 方向 + 區域
         val filterData = trafficInfo.orEmpty().filter {
             it.areaNm == road &&
-                    it.direction == currentDirection
+                    it.direction == currentDirection &&
+                    (regionCode == null || it.region == regionCode)
         }
 
         viewAdapter.trafficList = filterData
