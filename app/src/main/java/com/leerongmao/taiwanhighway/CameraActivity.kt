@@ -1,9 +1,9 @@
-package com.mufeng.taiwanhighway
+package com.leerongmao.taiwanhighway
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebViewClient
-import com.mufeng.taiwanhighway.databinding.ActivityCameraBinding
+import com.leerongmao.taiwanhighway.databinding.ActivityCameraBinding
 
 class CameraActivity : AppCompatActivity() {
 

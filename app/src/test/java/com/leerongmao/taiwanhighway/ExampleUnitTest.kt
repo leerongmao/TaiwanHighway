@@ -1,4 +1,4 @@
-package com.mufeng.taiwanhighway
+package com.leerongmao.taiwanhighway
 
 import org.junit.Test
 

@@ -1,9 +1,9 @@
-package com.mufeng.taiwanhighway
+package com.leerongmao.taiwanhighway
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mufeng.taiwanhighway.data.TrafficInfoItem
-import com.mufeng.taiwanhighway.databinding.ActivityTrafficDetailBinding
+import com.leerongmao.taiwanhighway.data.TrafficInfoItem
+import com.leerongmao.taiwanhighway.databinding.ActivityTrafficDetailBinding
 
 
 class TrafficDetailActivity : AppCompatActivity() {

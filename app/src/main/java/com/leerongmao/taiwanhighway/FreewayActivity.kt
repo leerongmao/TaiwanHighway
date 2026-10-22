@@ -1,8 +1,8 @@
-package com.mufeng.taiwanhighway
+package com.leerongmao.taiwanhighway
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mufeng.taiwanhighway.databinding.ActivityFreewayBinding
+import com.leerongmao.taiwanhighway.databinding.ActivityFreewayBinding
 
 private lateinit var binding: ActivityFreewayBinding
 

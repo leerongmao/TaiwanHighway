@@ -1,10 +1,10 @@
-package com.mufeng.taiwanhighway
+package com.leerongmao.taiwanhighway
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mufeng.taiwanhighway.data.TrafficInfoItem
-import com.mufeng.taiwanhighway.databinding.HighwayViewBinding
+import com.leerongmao.taiwanhighway.data.TrafficInfoItem
+import com.leerongmao.taiwanhighway.databinding.HighwayViewBinding
 
 class HighwayAdapter(private val itemClickListener: IItemClickListener): RecyclerView.Adapter<HighwayAdapter.MyViewHolder>() {
     class MyViewHolder(val highwayViewBinding: HighwayViewBinding) :

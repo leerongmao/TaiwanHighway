@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mufeng.taiwanhighway">
+    package="com.leerongmao.taiwanhighway">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,31 +12,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaiwanHighway">
         <activity
-            android:name=".EtagActivity"
+            android:name="com.leerongmao.taiwanhighway.EtagActivity"
             android:exported="false" />
         <activity
-            android:name=".CameraActivity"
+            android:name="com.leerongmao.taiwanhighway.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".OilActivity"
+            android:name="com.leerongmao.taiwanhighway.OilActivity"
             android:exported="false" />
         <activity
-            android:name=".HighwayMainActivity"
+            android:name="com.leerongmao.taiwanhighway.HighwayMainActivity"
             android:exported="false" />
         <activity
-            android:name=".HighwayActivity"
+            android:name="com.leerongmao.taiwanhighway.HighwayActivity"
             android:exported="false" />
         <activity
-            android:name=".TrafficDetailActivity"
+            android:name="com.leerongmao.taiwanhighway.TrafficDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".OldRoadActivity"
+            android:name="com.leerongmao.taiwanhighway.OldRoadActivity"
             android:exported="false" />
         <activity
-            android:name=".FreewayActivity"
+            android:name="com.leerongmao.taiwanhighway.FreewayActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.leerongmao.taiwanhighway.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

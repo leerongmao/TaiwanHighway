@@ -1,12 +1,9 @@
-package com.mufeng.taiwanhighway
+package com.leerongmao.taiwanhighway
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.webkit.WebViewClient
-import com.mufeng.taiwanhighway.Util.OkHttpUtil
-import com.mufeng.taiwanhighway.databinding.ActivityOilBinding
-import okhttp3.Response
+import com.leerongmao.taiwanhighway.databinding.ActivityOilBinding
 
 private lateinit var binding : ActivityOilBinding
 

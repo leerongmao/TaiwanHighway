@@ -1,4 +1,4 @@
-package com.mufeng.taiwanhighway.Util
+package com.leerongmao.taiwanhighway.Util
 
 object DirectionNSUtil {
     private val direction = listOf(

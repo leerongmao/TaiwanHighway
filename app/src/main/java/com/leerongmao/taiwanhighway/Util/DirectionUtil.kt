@@ -1,8 +1,8 @@
-package com.mufeng.taiwanhighway.Util
+package com.leerongmao.taiwanhighway.Util
 
-object DirectionEWUtil {
+object DirectionUtil {
     private val direction = listOf(
-         "東向", "西行","雙向"
+        "雙向", "北上", "南下"
     )
 
     fun getAllRegionName():List<Any>{

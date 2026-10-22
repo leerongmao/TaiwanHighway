@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-import com.mufeng.taiwanhighway.data.TrafficInfoItem
-import com.mufeng.taiwanhighway.databinding.ItemViewBinding
+import com.leerongmao.taiwanhighway.data.TrafficInfoItem
+import com.leerongmao.taiwanhighway.databinding.ItemViewBinding
 
 
 class OldRoadAdapter (private val itemClickListener:IItemClickListener):RecyclerView.Adapter<OldRoadAdapter.MyViewHolder>(){

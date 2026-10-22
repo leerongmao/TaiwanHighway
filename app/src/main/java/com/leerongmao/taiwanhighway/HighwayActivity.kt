@@ -1,4 +1,4 @@
-package com.mufeng.taiwanhighway
+package com.leerongmao.taiwanhighway
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,17 +9,16 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mufeng.taiwanhighway.Util.DirectionEWUtil
-import com.mufeng.taiwanhighway.Util.DirectionNSUtil
-import com.mufeng.taiwanhighway.Util.OkHttpUtil
-import com.mufeng.taiwanhighway.Util.RegionUtil
+import com.leerongmao.taiwanhighway.Util.DirectionEWUtil
+import com.leerongmao.taiwanhighway.Util.DirectionNSUtil
+import com.leerongmao.taiwanhighway.Util.OkHttpUtil
 import com.google.gson.Gson
-import com.mufeng.taiwanhighway.data.TrafficInfo
-import com.mufeng.taiwanhighway.data.TrafficInfoItem
-import com.mufeng.taiwanhighway.databinding.ActivityHighwayBinding
+import com.leerongmao.taiwanhighway.data.TrafficInfo
+import com.leerongmao.taiwanhighway.data.TrafficInfoItem
+import com.leerongmao.taiwanhighway.databinding.ActivityHighwayBinding
 import okhttp3.Response
 
-import com.mufeng.taiwanhighway.data.TrafficResponse
+import com.leerongmao.taiwanhighway.data.TrafficResponse
 import android.widget.Toast
 
 import java.text.SimpleDateFormat
@@ -141,8 +140,7 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
     }
 
     private fun setDefaultRegion() {
-        binding.spinner.setSelection(RegionUtil.getRegionIndexByName(currentDirection))
-
+        binding.spinner.setSelection(0)
     }
 
     private fun getTrafficInfo() {

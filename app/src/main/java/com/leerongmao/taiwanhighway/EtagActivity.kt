@@ -1,9 +1,9 @@
-package com.mufeng.taiwanhighway
+package com.leerongmao.taiwanhighway
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebViewClient
-import com.mufeng.taiwanhighway.databinding.ActivityEtagBinding
+import com.leerongmao.taiwanhighway.databinding.ActivityEtagBinding
 
 class EtagActivity : AppCompatActivity() {
 

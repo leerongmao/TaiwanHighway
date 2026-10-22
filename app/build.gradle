@@ -6,8 +6,10 @@ plugins {
 android {
     compileSdk 33
 
+    namespace "com.leerongmao.taiwanhighway"
+
     defaultConfig {
-        applicationId "com.mufeng.taiwanhighway"
+        applicationId "com.leerongmao.taiwanhighway"
         minSdk 28
         targetSdk 33
         versionCode 1
