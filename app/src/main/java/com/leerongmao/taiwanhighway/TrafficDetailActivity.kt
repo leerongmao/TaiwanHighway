@@ -4,6 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.leerongmao.taiwanhighway.data.TrafficInfoItem
 import com.leerongmao.taiwanhighway.databinding.ActivityTrafficDetailBinding
+import android.util.Log
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
+import java.time.temporal.ChronoField
 
 
 class TrafficDetailActivity : AppCompatActivity() {
@@ -32,11 +37,51 @@ class TrafficDetailActivity : AppCompatActivity() {
         initView()
         getImage()
 
+        // Beta 3.2.3：觀察警廣 API 的時間欄位
+        Log.d(
+            "TrafficTime",
+            "happendate=[${data.happendate}], " +
+                    "happentime=[${data.happentime}], " +
+                    "modDttm=[${data.modDttm}]"
+        )
+
+
         binding.btnBack.setOnClickListener {
             finish()
         }
 
+    }
 
+    private val apiTimeFormatter = DateTimeFormatterBuilder()
+        .appendPattern("uuuu-MM-dd HH:mm:ss")
+        .optionalStart()
+        .appendFraction(ChronoField.NANO_OF_SECOND, 1, 9, true)
+        .optionalEnd()
+        .toFormatter()
+
+    private fun formatTrafficTime(
+        rawTime: String?,
+        showSeconds: Boolean = false
+    ): String {
+        if (rawTime.isNullOrBlank()) return "未提供"
+
+        return try {
+            val dateTime = LocalDateTime.parse(
+                rawTime.trim(),
+                apiTimeFormatter
+            )
+
+            val pattern = if (showSeconds) {
+                "yyyy/MM/dd HH:mm:ss"
+            } else {
+                "yyyy/MM/dd HH:mm"
+            }
+
+            dateTime.format(DateTimeFormatter.ofPattern(pattern))
+
+        } catch (e: Exception) {
+            "時間格式異常"
+        }
     }
 
     private fun initView() {
@@ -50,24 +95,37 @@ class TrafficDetailActivity : AppCompatActivity() {
         }
         binding.tvName.text=areaNm
         if (region=="A"){
-            binding.tvRegionInfo.text= "全台"
+            binding.tvRegionInfo.text= "全台區域"
         }else if (region=="N"){
-            binding.tvRegionInfo.text= "北"
+            binding.tvRegionInfo.text= "北部區域"
         }else if (region=="M"){
-            binding.tvRegionInfo.text= "中"
+            binding.tvRegionInfo.text= "中部區域"
         }else if (region=="S"){
-            binding.tvRegionInfo.text= "南"
+            binding.tvRegionInfo.text= "南部區域"
         }else if (region=="E"){
-            binding.tvRegionInfo.text= "東"
+            binding.tvRegionInfo.text= "東部區域"
         }
 
         binding.tvDirection.text=direction
         binding.tvName.text=road2
         binding.tvCommentInfo.text=comment
         binding.tvRoadtypeInfo.text="["+roadtype+"]"
-        binding.tvHappenedDate.text=happeneddate
-        binding.tvHappenedTime.text=happenedtime.replaceAfter("00.","")
-//        binding.tvHappenedTime.text=happenedtime
+        // 組合事件發生日期與時間
+        val occurredTime =
+            if (!happeneddate.isNullOrBlank() &&
+                !happenedtime.isNullOrBlank()) {
+                "$happeneddate $happenedtime"
+            } else {
+                null
+            }
+
+// 顯示事件發生時間
+        binding.tvHappenedDate.text =
+            "事件發生：${formatTrafficTime(occurredTime)}"
+
+// 顯示通報最後修改時間
+        binding.tvHappenedTime.text =
+            "通報更新：${formatTrafficTime(data.modDttm, showSeconds = true)}"
     }
 
     fun getImage(){

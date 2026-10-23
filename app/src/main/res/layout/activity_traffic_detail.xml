@@ -3,36 +3,35 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="?android:attr/colorBackground"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_back"
-        android:textColor="@color/black"
+        android:textColor="?android:attr/textColorPrimary"
         android:background="@drawable/button_bg_style"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="12dp"
         app:layout_constraintTop_toBottomOf="@id/btn_back"
-        app:cardCornerRadius="5dp"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp"
-            android:background="?android:attr/selectableItemBackground">
+            android:padding="16dp">
 
 
             <ImageView
@@ -50,8 +49,9 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="3dp"
                 android:text="路段名稱"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/image" />
 
@@ -59,73 +59,86 @@
                 android:id="@+id/tv_direction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="3dp"
-                android:paddingRight="10dp"
+                android:layout_marginTop="8dp"
                 android:text="北上"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
+                android:textColor="?android:attr/textColorPrimary"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                app:layout_constraintStart_toStartOf="@id/tv_name" />
 
             <ImageView
                 android:id="@+id/image2"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:paddingRight="10dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/tv_roadtype_info"
-                app:layout_constraintTop_toBottomOf="@+id/image" />
+                android:layout_marginTop="16dp"
+                android:paddingEnd="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_direction" />
 
             <TextView
                 android:id="@+id/tv_roadtype_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
+                android:layout_marginStart="8dp"
                 android:text="路況類別"
-                android:textSize="20dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_name"
-                app:layout_constraintLeft_toRightOf="@+id/image2" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary"
+                app:layout_constraintStart_toEndOf="@id/image2"
+                app:layout_constraintTop_toTopOf="@id/image2"
+                app:layout_constraintBottom_toBottomOf="@id/image2" />
 
             <TextView
                 android:id="@+id/tv_comment_info"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:text="路況說明"
-                android:textSize="20dp"
-                android:paddingTop="5dp"
-                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:textColor="?android:attr/textColorPrimary"
+                android:lineSpacingExtra="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_roadtype_info" />
 
             <TextView
                 android:id="@+id/tv_happened_date"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="happened_date"
-                android:textSize="15dp"
-                android:paddingTop="5dp"
-                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="16dp"
+                android:text="事件發生時間"
+                android:textSize="14sp"
+                android:textColor="?android:attr/textColorSecondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_comment_info" />
 
             <TextView
                 android:id="@+id/tv_happened_time"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="happened_time"
-                android:textSize="15dp"
-                android:paddingTop="5dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_happened_date" />
+                android:layout_marginTop="6dp"
+                android:text="通報更新時間"
+                android:textSize="14sp"
+                android:textColor="?android:attr/textColorSecondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_happened_date"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
             <TextView
                 android:id="@+id/tv_region_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:text="區域"
-                android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                android:layout_marginStart="12dp"
+                android:text="北部區域"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:textColor="?android:attr/textColorSecondary"
+                app:layout_constraintStart_toEndOf="@id/tv_direction"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_direction" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
