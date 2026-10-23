@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="首頁"
+            android:icon="@drawable/ic_home" />
+
+        <item
+            android:id="@+id/nav_traffic"
+            android:title="即時路況"
+            android:icon="@drawable/ic_traffic" />
+
+        <item
+            android:id="@+id/nav_oil"
+            android:title="油價資訊"
+            android:icon="@drawable/ic_fuel" />
+
+        <item
+            android:id="@+id/nav_camera"
+            android:title="道路攝影機"
+            android:icon="@drawable/ic_camera" />
+
+        <item
+            android:id="@+id/nav_etag"
+            android:title="eTag"
+            android:icon="@drawable/ic_etag" />
+
+    </group>
+
+</menu>

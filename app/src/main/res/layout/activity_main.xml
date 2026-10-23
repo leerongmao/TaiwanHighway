@@ -1,97 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello！你好！"
-        android:paddingTop="60dp"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_btn"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tv"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_freeway"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/home_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="路況事件列表"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="臺灣公路通"
+            app:titleTextColor="?attr/colorOnPrimary"
+            app:navigationIconTint="?attr/colorOnPrimary"/>
 
-        <Button
-            android:id="@+id/btn_oil"
+        <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="看油價"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/btn_freeway"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            android:fillViewport="true"
+            android:background="?android:attr/colorBackground"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <Button
-            android:id="@+id/btn_camera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="攝影機"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_oil"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-        <Button
-            android:id="@+id/btn_etag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="算eTag"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_camera"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="道路資訊，一目了然"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:layout_marginTop="8dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="查詢即時路況與常用公路服務"
+                    android:textSize="14sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="28dp" />
 
-    <Button
-        android:id="@+id/btn_oldroad"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_freeway"
+                    android:layout_width="match_parent"
+                    android:layout_height="112dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="查看即時路況"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/ic_traffic"
+                    app:iconGravity="textTop"
+                    app:iconSize="32dp"
+                    app:iconPadding="10dp"
+                    app:iconTint="?attr/colorOnPrimary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="常用服務"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:layout_marginBottom="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginBottom="28dp">
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_oil"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:text="油價"
+                        android:textSize="14sp"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:gravity="center"
+                        android:backgroundTint="?attr/colorSurface"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        app:cornerRadius="12dp"
+                        app:strokeWidth="1dp"
+                        app:icon="@drawable/ic_fuel"
+                        app:iconGravity="textTop"
+                        app:iconSize="26dp"
+                        app:iconPadding="8dp"
+                        app:iconTint="@color/home_secondary_accent"
+                        app:strokeColor="@color/home_secondary_accent"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_camera"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:text="攝影機"
+                        android:textSize="14sp"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:gravity="center"
+                        android:backgroundTint="?attr/colorSurface"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        app:cornerRadius="12dp"
+                        app:strokeWidth="1dp"
+                        app:icon="@drawable/ic_camera"
+                        app:iconGravity="textTop"
+                        app:iconSize="26dp"
+                        app:iconPadding="8dp"
+                        app:iconTint="@color/home_secondary_accent"
+                        app:strokeColor="@color/home_secondary_accent"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_etag"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:text="eTag"
+                        android:textSize="14sp"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:gravity="center"
+                        android:backgroundTint="?attr/colorSurface"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        app:cornerRadius="12dp"
+                        app:strokeWidth="1dp"
+                        app:icon="@drawable/ic_etag"
+                        app:iconGravity="textTop"
+                        app:iconSize="26dp"
+                        app:iconPadding="8dp"
+                        app:iconTint="@color/home_secondary_accent"
+                        app:strokeColor="@color/home_secondary_accent"/>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="經典功能"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:layout_marginBottom="8dp" />
+
+                <Button
+                    android:id="@+id/btn_oldroad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="舊版路況"
+                    android:textSize="14sp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:textColor="@color/home_secondary_accent"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="舊版路況"
-        app:layout_constraintTop_toBottomOf="@id/layout_btn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/drawer_menu"
+        app:headerLayout="@layout/nav_header"/>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="447dp" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

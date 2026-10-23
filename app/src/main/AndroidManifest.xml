@@ -37,7 +37,8 @@
             android:exported="false" />
         <activity
             android:name="com.leerongmao.taiwanhighway.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.TaiwanHighway_NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

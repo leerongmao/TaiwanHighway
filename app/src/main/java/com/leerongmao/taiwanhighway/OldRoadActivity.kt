@@ -16,6 +16,7 @@ import com.google.gson.Gson
 import com.leerongmao.taiwanhighway.Util.OkHttpUtil
 import com.leerongmao.taiwanhighway.data.TrafficInfo
 import com.leerongmao.taiwanhighway.data.TrafficInfoItem
+import com.leerongmao.taiwanhighway.data.TrafficResponse
 import com.leerongmao.taiwanhighway.databinding.ActivityOldRoadBinding
 import okhttp3.Response
 
@@ -98,7 +99,10 @@ class OldRoadActivity : AppCompatActivity() , OldRoadAdapter.IItemClickListener 
             override fun onResponse(response: Response) {
                 val trafficData = response.body?.string()
 
-                trafficInfo = Gson().fromJson(trafficData, TrafficInfo::class.java)
+//                trafficInfo = Gson().fromJson(trafficData, TrafficInfo::class.java)
+                val response = Gson().fromJson(trafficData, TrafficResponse::class.java)
+                trafficInfo = response.result
+
 
 
 
