@@ -159,23 +159,33 @@
 
                 </LinearLayout>
 
-                <TextView
+                <!-- 經典功能區塊 -->
+                <LinearLayout
+                    android:id="@+id/classic_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="經典功能"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:layout_marginBottom="8dp" />
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
-                <Button
-                    android:id="@+id/btn_oldroad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="舊版路況"
-                    android:textSize="14sp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:textColor="@color/home_secondary_accent"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="經典功能"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:layout_marginBottom="8dp" />
+
+                    <Button
+                        android:id="@+id/btn_oldroad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="舊版路況"
+                        android:textSize="14sp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:textColor="@color/home_secondary_accent" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:text="@string/btn_back"
-        android:textColor="@color/black"
+        app:titleTextColor="?attr/colorOnPrimary"
         android:background="@drawable/button_bg_style"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />

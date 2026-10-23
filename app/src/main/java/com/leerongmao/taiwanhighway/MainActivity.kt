@@ -5,11 +5,24 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.leerongmao.taiwanhighway.databinding.ActivityMainBinding
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
+import android.view.View
 
 private lateinit var binding: ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val savedThemeMode = getSharedPreferences("app_settings", MODE_PRIVATE)
+            .getInt(
+                "theme_mode",
+                AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+            )
+
+        if (AppCompatDelegate.getDefaultNightMode() != savedThemeMode) {
+            AppCompatDelegate.setDefaultNightMode(savedThemeMode)
+        }
+
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
 
@@ -51,6 +64,15 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_etag -> {
                     startActivity(Intent(this, EtagActivity::class.java))
                 }
+                R.id.nav_settings -> {
+                    startActivity(Intent(this, SettingsActivity::class.java))
+                }
+                R.id.nav_classic -> {
+                    startActivity(
+                        Intent(this, OldRoadActivity::class.java)
+                    )
+                    true
+                }
             }
 
             binding.drawerLayout.closeDrawers()
@@ -87,5 +109,18 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CameraActivity::class.java)
             startActivity(intent)
         }
+    }
+    override fun onResume() {
+        super.onResume()
+
+        val unlocked = getSharedPreferences("app_settings", MODE_PRIVATE)
+            .getBoolean("classic_unlocked", false)
+
+        binding.navigationView.menu
+            .findItem(R.id.nav_classic)
+            ?.isVisible = unlocked
+
+        binding.classicSection.visibility =
+            if (unlocked) View.VISIBLE else View.GONE
     }
 }

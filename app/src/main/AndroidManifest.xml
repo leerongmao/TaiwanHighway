@@ -12,31 +12,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaiwanHighway">
         <activity
-            android:name="com.leerongmao.taiwanhighway.EtagActivity"
+            android:name=".EtagActivity"
             android:exported="false" />
         <activity
-            android:name="com.leerongmao.taiwanhighway.CameraActivity"
+            android:name=".CameraActivity"
             android:exported="false" />
         <activity
-            android:name="com.leerongmao.taiwanhighway.OilActivity"
+            android:name=".OilActivity"
             android:exported="false" />
         <activity
-            android:name="com.leerongmao.taiwanhighway.HighwayMainActivity"
+            android:name=".HighwayMainActivity"
             android:exported="false" />
         <activity
-            android:name="com.leerongmao.taiwanhighway.HighwayActivity"
+            android:name=".HighwayActivity"
             android:exported="false" />
         <activity
-            android:name="com.leerongmao.taiwanhighway.TrafficDetailActivity"
+            android:name=".TrafficDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.leerongmao.taiwanhighway.OldRoadActivity"
+            android:name=".OldRoadActivity"
             android:exported="false" />
         <activity
-            android:name="com.leerongmao.taiwanhighway.FreewayActivity"
+            android:name=".FreewayActivity"
             android:exported="false" />
         <activity
-            android:name="com.leerongmao.taiwanhighway.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.TaiwanHighway_NoActionBar">
             <intent-filter>
@@ -45,6 +45,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
