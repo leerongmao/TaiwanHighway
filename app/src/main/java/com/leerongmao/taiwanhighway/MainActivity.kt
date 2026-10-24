@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_camera -> {
-                    startActivity(Intent(this, CameraActivity::class.java))
+                    startActivity(Intent(this, CameraListActivity::class.java))
                 }
 
                 R.id.nav_etag -> {
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnCamera.setOnClickListener {
 //            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(CAMERA_URL))
 //            startActivity(intent)
-            val intent = Intent(this, CameraActivity::class.java)
+            val intent = Intent(this, CameraListActivity::class.java)
             startActivity(intent)
         }
     }

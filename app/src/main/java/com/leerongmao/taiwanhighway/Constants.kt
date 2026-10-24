@@ -11,3 +11,5 @@ const val OIL_URL2="https://vipmbr.cpc.com.tw/CPCSTN/ListPriceWebService.asmx/ge
 const val OIL_URL="https://www2.moeaboe.gov.tw/oil102/oil2017/newmain.asp"
 
 const val CAMERA_URL="https://tw.live/"
+
+const val CPC_OIL_URL = "https://vipmbr.cpc.com.tw/opendata/MainProdListPrice"

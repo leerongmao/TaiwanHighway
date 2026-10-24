@@ -13,24 +13,31 @@
         android:theme="@style/Theme.TaiwanHighway">
         <activity
             android:name=".EtagActivity"
+            android:theme="@style/Theme.TaiwanHighway_NoActionBar"
             android:exported="false" />
         <activity
             android:name=".CameraActivity"
+            android:theme="@style/Theme.TaiwanHighway_NoActionBar"
             android:exported="false" />
         <activity
             android:name=".OilActivity"
+            android:theme="@style/Theme.TaiwanHighway_NoActionBar"
             android:exported="false" />
         <activity
             android:name=".HighwayMainActivity"
+            android:theme="@style/Theme.TaiwanHighway_NoActionBar"
             android:exported="false" />
         <activity
             android:name=".HighwayActivity"
+            android:theme="@style/Theme.TaiwanHighway_NoActionBar"
             android:exported="false" />
         <activity
             android:name=".TrafficDetailActivity"
+            android:theme="@style/Theme.TaiwanHighway_NoActionBar"
             android:exported="false" />
         <activity
             android:name=".OldRoadActivity"
+            android:theme="@style/Theme.TaiwanHighway_NoActionBar"
             android:exported="false" />
         <activity
             android:name=".FreewayActivity"
@@ -52,6 +59,11 @@
         <activity
             android:name=".AboutActivity"
             android:exported="false" />
+        <activity
+            android:name=".CameraListActivity"
+            android:exported="false"
+            android:theme="@style/Theme.TaiwanHighway_NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

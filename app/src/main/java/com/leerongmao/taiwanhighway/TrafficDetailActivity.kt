@@ -46,7 +46,7 @@ class TrafficDetailActivity : AppCompatActivity() {
         )
 
 
-        binding.btnBack.setOnClickListener {
+        binding.toolbar.setNavigationOnClickListener {
             finish()
         }
 

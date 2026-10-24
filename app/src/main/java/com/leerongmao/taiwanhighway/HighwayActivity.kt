@@ -26,6 +26,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+import com.leerongmao.taiwanhighway.data.RoadCatalog
+import com.leerongmao.taiwanhighway.data.RoadDirectionType
+
 private lateinit var binding: ActivityHighwayBinding
 private lateinit var viewAdapter: HighwayAdapter
 private lateinit var viewManager: RecyclerView.LayoutManager
@@ -47,6 +50,12 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
 
         initView()
 
+        val isProvincial =
+            intent.getStringExtra("roadCategory") == "PROVINCIAL"
+
+        binding.directionFilterBar.visibility =
+            if (isProvincial) View.GONE else View.VISIBLE
+
 // 避免列表還沒滑到最頂端就觸發重新整理
         binding.swipeRefresh.setOnChildScrollUpCallback { _, _ ->
             binding.recycleView.canScrollVertically(-1)
@@ -62,12 +71,13 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
         }
 
         // 即使 API 失敗，也要正常顯示國道名稱
-        binding.tv.text = intent.getStringExtra("road2") ?: "國道路況"
+        binding.toolbar.title =
+            intent.getStringExtra("road2") ?: "即時路況"
 
         getTrafficInfo()
-        getImage()
 
-        binding.btnBack.setOnClickListener {
+
+        binding.toolbar.setNavigationOnClickListener {
             finish()
         }
 
@@ -99,16 +109,39 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
 
     private fun initView() {
 
-        val road2 =intent.getStringExtra("road2")
-        if(road2=="國道１號"||road2=="國道３號"||road2=="國道５號") {
-            currentDirection ="北上"
-            val adapterDirection = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, DirectionNSUtil.getAllRegionName())
-            binding.spinner.adapter=adapterDirection
-        }else if (road2=="國道２號"||road2=="國道４號"||road2=="國道６號"||road2=="國道８號"||road2=="國道10號"){
-            currentDirection ="東向"
-            val adapterDirection = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, DirectionEWUtil.getAllRegionName())
-            binding.spinner.adapter=adapterDirection
+        val road2 = intent.getStringExtra("road2")
+        val expressway = RoadCatalog.findByName(road2.orEmpty())
+
+        val isNorthSouth = when {
+            expressway != null ->
+                expressway.directionType == RoadDirectionType.NORTH_SOUTH
+
+            road2 == "國道１號" ||
+                    road2 == "國道３號" ||
+                    road2 == "國道５號" -> true
+
+            else -> false
         }
+
+        currentDirection = if (isNorthSouth) "北上" else "東向"
+
+
+        val directionNames = if (isNorthSouth) {
+            listOf("全部方向", "北上", "南下")
+        } else {
+            listOf("全部方向", "東向", "西向")
+        }
+
+        currentDirection = "全部方向"
+
+
+        val adapterDirection = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            directionNames
+        )
+
+        binding.spinner.adapter = adapterDirection
 
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -131,7 +164,10 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
         viewManager = LinearLayoutManager(this)
 
         // 自定義 Adapte 為 MainAdapter，稍後再定義 MainAdapter 這個類別
-        viewAdapter = HighwayAdapter(this)
+        viewAdapter = HighwayAdapter(
+            this,
+            isProvincial = intent.getStringExtra("roadCategory") == "PROVINCIAL"
+        )
 
         // 定義從佈局當中，拿到 recycler_view 元件，
         binding.recycleView.apply {
@@ -282,29 +318,7 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
         }
     }
 
-    fun getImage(){
-        val road2 =intent.getStringExtra("road2")
-        if (road2=="國道１號"){
-            binding.image.setImageResource(R.drawable.twhw1)
-        }else if(road2=="國道２號"){
-            binding.image.setImageResource(R.drawable.twhw2)
-        }else if(road2=="國道３號"){
-            binding.image.setImageResource(R.drawable.twhw3)
-        }else if(road2=="國道3號甲線"){
-            binding.image.setImageResource(R.drawable.twhw3a)
-        }else if(road2=="國道４號"){
-            binding.image.setImageResource(R.drawable.twhw4)
-        }else if(road2=="國道５號"){
-            binding.image.setImageResource(R.drawable.twhw5)
-        }else if(road2=="國道６號"){
-            binding.image.setImageResource(R.drawable.twhw6)
-        }else if(road2=="國道８號"){
-            binding.image.setImageResource(R.drawable.twhw8)
-        }else if(road2=="國道10號"){
-            binding.image.setImageResource(R.drawable.twhw10)
-        }
 
-    }
 
     private fun updateRecycleView() {
         val road = intent.getStringExtra("road")
@@ -314,12 +328,25 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
         val regionCode = RegionUtil.getRegionCodeByName(currentRegion)
 
         // 三條件篩選：國道 + 方向 + 區域
-        val filterData = trafficInfo.orEmpty().filter {
-            it.areaNm == road &&
-                    it.direction == currentDirection &&
-                    (regionCode == null || it.region == regionCode)
-        }
+        val road2 = intent.getStringExtra("road2")
+        val expressway = RoadCatalog.findByName(road2.orEmpty())
 
+        val isProvincial =
+            intent.getStringExtra("roadCategory") == "PROVINCIAL"
+
+        val filterData = trafficInfo.orEmpty().filter {
+            val roadMatches = when {
+                isProvincial -> RoadCatalog.isProvincialRoad(it.areaNm)
+                expressway != null -> expressway.matches(it.areaNm)
+                else -> it.areaNm == road
+            }
+
+
+            roadMatches &&
+                    (isProvincial || matchesDirection(it.direction, currentDirection)) &&
+                    (regionCode == null || it.region == regionCode)
+
+        }
         viewAdapter.trafficList = filterData
 
         if (filterData.isEmpty()) {
@@ -337,5 +364,36 @@ class HighwayActivity : AppCompatActivity() , HighwayAdapter.IItemClickListener 
         intent.putExtra("road2",road)
         startActivity(intent)
     }
+
+
+    private fun matchesDirection(
+        eventDirection: String,
+        selectedDirection: String
+    ): Boolean {
+
+        val event = eventDirection.trim()
+        val selected = selectedDirection.trim()
+
+        if (selected == "全部方向") {
+            return true
+        }
+
+        if (event == "雙向") {
+            return true
+        }
+
+        return when (selected) {
+            "東向", "東行" ->
+                event == "東向" || event == "東行"
+
+            "西向", "西行" ->
+                event == "西向" || event == "西行"
+
+            else -> event == selected
+        }
+    }
+
+
+
 
 }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    android:background="?attr/selectableItemBackground"
+    android:minHeight="88dp"
+    android:padding="12dp">
+
+    <!-- 攝影機圖示 -->
+    <ImageView
+        android:id="@+id/imgCamera"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@android:drawable/ic_menu_camera"
+        android:contentDescription="攝影機"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- 道路名稱：允許長名稱換行 -->
+    <TextView
+        android:id="@+id/tvRoadName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="國道1號五股楊梅高架道路"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="?android:attr/textColorPrimary"
+        android:maxLines="2"
+        app:layout_constraintStart_toEndOf="@id/imgCamera"
+        app:layout_constraintEnd_toStartOf="@id/imgArrow"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 里程 -->
+    <TextView
+        android:id="@+id/tvMile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="41K+850"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="?android:attr/textColorPrimary"
+        app:layout_constraintStart_toStartOf="@id/tvRoadName"
+        app:layout_constraintTop_toBottomOf="@id/tvRoadName" />
+
+    <!-- 方向放在里程右側 -->
+    <TextView
+        android:id="@+id/tvDirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="南向"
+        android:textSize="13sp"
+        android:textColor="?android:attr/textColorSecondary"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@id/tvMile"
+        app:layout_constraintTop_toTopOf="@id/tvMile"
+        app:layout_constraintBottom_toBottomOf="@id/tvMile"/>
+
+    <!-- 點擊提示 -->
+    <TextView
+        android:id="@+id/tvHint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="點擊查看即時影像"
+        android:textSize="12sp"
+        android:textColor="?android:attr/textColorSecondary"
+        app:layout_constraintStart_toStartOf="@id/tvRoadName"
+        app:layout_constraintEnd_toStartOf="@id/imgArrow"
+        app:layout_constraintTop_toBottomOf="@id/tvMile" />
+
+    <!-- 右側箭頭 -->
+    <ImageView
+        android:id="@+id/imgArrow"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@android:drawable/ic_media_play"
+        android:contentDescription="查看影像"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

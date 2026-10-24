@@ -15,7 +15,7 @@ class EtagActivity : AppCompatActivity() {
         binding= ActivityEtagBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnBack.setOnClickListener {
+        binding.toolbar.setNavigationOnClickListener {
             finish()
         }
 

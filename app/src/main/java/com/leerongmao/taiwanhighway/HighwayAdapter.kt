@@ -12,7 +12,10 @@ import java.time.format.DateTimeFormatterBuilder
 import java.time.format.DateTimeParseException
 import java.time.temporal.ChronoField
 
-class HighwayAdapter(private val itemClickListener: IItemClickListener): RecyclerView.Adapter<HighwayAdapter.MyViewHolder>() {
+class HighwayAdapter(
+    private val itemClickListener: IItemClickListener,
+    private val isProvincial: Boolean = false
+) : RecyclerView.Adapter<HighwayAdapter.MyViewHolder>() {
     class MyViewHolder(val highwayViewBinding: HighwayViewBinding) :
         RecyclerView.ViewHolder(highwayViewBinding.root)
 
@@ -62,6 +65,13 @@ class HighwayAdapter(private val itemClickListener: IItemClickListener): Recycle
         val item = trafficList[position]
 
         with(holder.highwayViewBinding) {
+            if (isProvincial) {
+                tvRoadName.text = item.areaNm
+                tvRoadName.visibility = View.VISIBLE
+            } else {
+                tvRoadName.text = ""
+                tvRoadName.visibility = View.GONE
+            }
             tvType.text = "[${item.roadtype}]"
             tvComment.text = item.comment
 

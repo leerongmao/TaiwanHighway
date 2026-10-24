@@ -39,6 +39,9 @@ class OldRoadActivity : AppCompatActivity() , OldRoadAdapter.IItemClickListener 
         initView()
 
         getTrafficInfo()
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
 
     }
 
