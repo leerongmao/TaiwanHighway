@@ -220,9 +220,9 @@ class HighwayMainActivity : AppCompatActivity() {
         }
 
         val image = ImageView(this).apply {
-            setImageResource(road.iconRes ?: R.drawable.twhw1_small)
+            setImageResource(road.iconRes ?: R.drawable.ic_expressway_61)
             scaleType = ImageView.ScaleType.FIT_CENTER
-            contentDescription = "${road.name}標誌（暫用）"
+            contentDescription = "${road.name}標誌"
 
             layoutParams = LinearLayout.LayoutParams(
                 dp(42),
@@ -308,9 +308,9 @@ class HighwayMainActivity : AppCompatActivity() {
         val image = ImageView(this).apply {
             setImageResource(
                 if (road.name == "國道3甲") {
-                    R.drawable.twhw3a
+                    R.drawable.ic_highway_3a
                 } else {
-                    R.drawable.twhw2_small
+                    R.drawable.ic_highway_2
                 }
             )
 

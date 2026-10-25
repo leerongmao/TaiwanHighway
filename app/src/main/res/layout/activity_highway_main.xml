@@ -89,7 +89,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:src="@drawable/twhw1_small"
+                        android:src="@drawable/ic_highway_1"
                         android:contentDescription="國道一號標誌" />
 
                     <TextView
@@ -123,7 +123,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:src="@drawable/twhw2_small"
+                        android:src="@drawable/ic_highway_2"
                         android:contentDescription="國道二號標誌" />
 
                     <TextView
@@ -157,7 +157,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:src="@drawable/twhw3_small"
+                        android:src="@drawable/ic_highway_3"
                         android:contentDescription="國道三號標誌" />
 
                     <TextView
@@ -191,7 +191,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:src="@drawable/twhw4_small"
+                        android:src="@drawable/ic_highway_4"
                         android:contentDescription="國道四號標誌" />
 
                     <TextView
@@ -225,7 +225,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:src="@drawable/twhw5_small"
+                        android:src="@drawable/ic_highway_5"
                         android:contentDescription="國道五號標誌" />
 
                     <TextView
@@ -259,7 +259,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:src="@drawable/twhw6_small"
+                        android:src="@drawable/ic_highway_6"
                         android:contentDescription="國道六號標誌" />
 
                     <TextView
@@ -293,7 +293,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:src="@drawable/twhw8_small"
+                        android:src="@drawable/ic_highway_8"
                         android:contentDescription="國道八號標誌" />
 
                     <TextView
@@ -327,7 +327,7 @@
                     <ImageView
                         android:layout_width="42dp"
                         android:layout_height="42dp"
-                        android:src="@drawable/twhw10_small"
+                        android:src="@drawable/ic_highway_10"
                         android:contentDescription="國道十號標誌" />
 
                     <TextView

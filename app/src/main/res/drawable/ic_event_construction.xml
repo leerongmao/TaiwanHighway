@@ -1,0 +1,29 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- 施工護欄主體 -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#DF8430"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M3,7 L21,7 L21,15 L3,15 Z" />
+
+    <!-- 警示斜線 -->
+    <path
+        android:strokeColor="#DF8430"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M7,7 L3,13 M13,7 L7,15 M19,7 L13,15 M21,11 L17,15" />
+
+    <!-- 護欄支架 -->
+    <path
+        android:strokeColor="#DF8430"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M6,5 L6,7 M18,5 L18,7 M6,15 L6,21 M18,15 L18,21 M4,21 L8,21 M16,21 L20,21" />
+</vector>

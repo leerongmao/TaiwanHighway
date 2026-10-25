@@ -131,34 +131,48 @@ class TrafficDetailActivity : AppCompatActivity() {
     fun getImage(){
         val road2 =intent.getStringExtra("road2")
         if (road2=="國道１號"){
-            binding.image.setImageResource(R.drawable.twhw1)
+            binding.image.setImageResource(R.drawable.ic_highway_1)
         }else if(road2=="國道２號"){
-            binding.image.setImageResource(R.drawable.twhw2)
+            binding.image.setImageResource(R.drawable.ic_highway_2)
         }else if(road2=="國道３號"){
-            binding.image.setImageResource(R.drawable.twhw3)
+            binding.image.setImageResource(R.drawable.ic_highway_3)
         }else if(road2=="國道3號甲線"){
-            binding.image.setImageResource(R.drawable.twhw3a)
+            binding.image.setImageResource(R.drawable.ic_highway_3a)
         }else if(road2=="國道４號"){
-            binding.image.setImageResource(R.drawable.twhw4)
+            binding.image.setImageResource(R.drawable.ic_highway_4)
         }else if(road2=="國道５號"){
-            binding.image.setImageResource(R.drawable.twhw5)
+            binding.image.setImageResource(R.drawable.ic_highway_5)
         }else if(road2=="國道６號"){
-            binding.image.setImageResource(R.drawable.twhw6)
+            binding.image.setImageResource(R.drawable.ic_highway_6)
         }else if(road2=="國道８號"){
-            binding.image.setImageResource(R.drawable.twhw8)
+            binding.image.setImageResource(R.drawable.ic_highway_8)
         }else if(road2=="國道10號"){
-            binding.image.setImageResource(R.drawable.twhw10)
+            binding.image.setImageResource(R.drawable.ic_highway_10)
         }
 
-        if(roadtype=="道路施工"){
-            binding.image2.setImageResource(R.drawable.construction)
-        }else if(roadtype=="事故"){
-            binding.image2.setImageResource(R.drawable.accident)
-        }else if(roadtype=="交通障礙"){
-            binding.image2.setImageResource(R.drawable.obstacle)
-        }else{
-            binding.image2.setImageResource(R.drawable.others)
+
+
+        when (roadtype) {
+            "道路施工" -> {
+                binding.image2.setImageResource(R.drawable.ic_event_construction)
+            }
+            "事故" -> {
+                binding.image2.setImageResource(R.drawable.ic_event_accident)
+            }
+            "交通障礙", "阻塞" -> {
+                binding.image2.setImageResource(R.drawable.ic_event_obstacle)
+            }
+            "號誌故障" -> {
+                binding.image2.setImageResource(R.drawable.ic_event_signal)
+            }
+            "交通管制" -> {
+                binding.image2.setImageResource(R.drawable.ic_event_control)
+            }
+            else -> {
+                binding.image2.setImageResource(R.drawable.ic_event_other)
+            }
         }
+
 
     }
 }
