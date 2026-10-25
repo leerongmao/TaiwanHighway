@@ -159,6 +159,87 @@
 
                 </LinearLayout>
 
+                <!-- 公路小知識 -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_road_fact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="1dp"
+                    app:cardBackgroundColor="?attr/colorSurface"
+                    app:strokeColor="@color/home_secondary_accent"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="💡 公路小知識"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="?android:attr/textColorPrimary" />
+
+                        <TextView
+                            android:id="@+id/tv_road_fact_category"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="省道"
+                            android:textSize="12sp"
+                            android:textColor="@color/home_secondary_accent" />
+
+                        <TextView
+                            android:id="@+id/tv_road_fact_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="台 63 線又稱「中投公路」，連接臺中與南投草屯一帶。"
+                            android:textSize="15sp"
+                            android:lineSpacingExtra="3dp"
+                            android:textColor="?android:attr/textColorPrimary" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_road_fact_source"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="查看來源"
+                                android:textSize="12sp"
+                                android:textColor="@color/home_secondary_accent" />
+
+                            <Space
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_road_fact_next"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="換一則"
+                                android:textSize="12sp"
+                                android:textColor="@color/home_secondary_accent" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
                 <!-- 經典功能區塊 -->
                 <LinearLayout
                     android:id="@+id/classic_section"

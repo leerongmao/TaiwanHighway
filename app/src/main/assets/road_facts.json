@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "facts": [
+    {
+      "id": "road_001",
+      "category": "國道歷史",
+      "text": "國道 1 號又稱「中山高速公路」，於 1978 年全線通車，也是臺灣第一條高速公路。",
+      "sourceUrl": "https://www.freeway.gov.tw/Publish.aspx?cnid=3005"
+    },
+    {
+      "id": "road_002",
+      "category": "國道歷史",
+      "text": "中山高速公路興建時，臺灣還沒有建造高速公路的經驗，工程曾由國外顧問公司協助設計與監造。",
+      "sourceUrl": "https://www.freeway.gov.tw/Publish.aspx?cnid=3005"
+    },
+    {
+      "id": "road_003",
+      "category": "國道",
+      "text": "國道 5 號的正式別名是「蔣渭水高速公路」，也常被稱為「北宜高速公路」。",
+      "sourceUrl": "https://www.freeway.gov.tw/Publish.aspx?cnid=3009"
+    },
+    {
+      "id": "road_004",
+      "category": "隧道工程",
+      "text": "國道 5 號的雪山隧道長約 12.9 公里，於 2006 年 6 月 16 日開放小型車通行。",
+      "sourceUrl": "https://www.freeway.gov.tw/Publish.aspx?cnid=610&p=120"
+    },
+    {
+      "id": "road_005",
+      "category": "隧道工程",
+      "text": "雪山隧道每隔約 350 公尺設有一處人行聯絡隧道，讓兩側主隧道之間有緊急疏散通道。",
+      "sourceUrl": "https://www.freeway.gov.tw/Publish.aspx?cnid=610&p=120"
+    },
+    {
+      "id": "road_006",
+      "category": "省道",
+      "text": "台 63 線又稱「中投公路」。有趣的是，公路局將它列為非屬快速公路的省道。",
+      "sourceUrl": "https://www.thb.gov.tw/News_ExpresswaySection.aspx?n=151&sms=13790"
+    },
+    {
+      "id": "road_007",
+      "category": "省道",
+      "text": "台 61 線是「西部濱海快速公路」，但部分路段存在斷鏈，並不是全線都能以快速公路規格連續行駛。",
+      "sourceUrl": "https://www.thb.gov.tw/News_ExpresswaySpeedLimit.aspx?n=165&sms=13790"
+    },
+    {
+      "id": "road_008",
+      "category": "省道",
+      "text": "台 64 線是「八里新店線」，連接新北市的臺北港端與新店端，是一條東西向快速公路。",
+      "sourceUrl": "https://www.thb.gov.tw/News_ExpresswaySection.aspx?n=151&sms=13790"
+    },
+    {
+      "id": "road_009",
+      "category": "公路工程",
+      "text": "台 9 線蘇花改全長約 38.8 公里，其中包含 8 座隧道與 13 座橋梁。",
+      "sourceUrl": "https://thbu4.thb.gov.tw/cp.aspx?n=5214"
+    },
+    {
+      "id": "road_010",
+      "category": "省道",
+      "text": "台 68 線又稱「南寮竹東線」，是一條東西向快速公路，連接新竹南寮與竹東一帶。",
+      "sourceUrl": "https://www.thb.gov.tw/News_ExpresswaySection.aspx?n=151&sms=13790"
+    }
+  ]
+}

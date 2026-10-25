@@ -37,13 +37,7 @@ class TrafficDetailActivity : AppCompatActivity() {
         initView()
         getImage()
 
-        // Beta 3.2.3：觀察警廣 API 的時間欄位
-        Log.d(
-            "TrafficTime",
-            "happendate=[${data.happendate}], " +
-                    "happentime=[${data.happentime}], " +
-                    "modDttm=[${data.modDttm}]"
-        )
+
 
 
         binding.toolbar.setNavigationOnClickListener {

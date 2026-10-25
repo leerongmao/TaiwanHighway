@@ -7,10 +7,24 @@ import com.leerongmao.taiwanhighway.databinding.ActivityMainBinding
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import android.view.View
+import android.net.Uri
+import android.util.Log
+import org.json.JSONObject
 
 private lateinit var binding: ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private data class RoadFact(
+        val id: String,
+        val category: String,
+        val text: String,
+        val sourceUrl: String
+    )
+
+    private var roadFacts: List<RoadFact> = emptyList()
+    private var currentRoadFact: RoadFact? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val savedThemeMode = getSharedPreferences("app_settings", MODE_PRIVATE)
@@ -109,7 +123,78 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CameraListActivity::class.java)
             startActivity(intent)
         }
+
+        // 初始化公路小知識
+
+        roadFacts = loadRoadFacts()
+
+        showRandomRoadFact()
+
+        binding.btnRoadFactNext.setOnClickListener {
+            showRandomRoadFact()
+        }
+
+        binding.btnRoadFactSource.setOnClickListener {
+            currentRoadFact?.sourceUrl
+                ?.takeIf { it.isNotBlank() }
+                ?.let { url ->
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                    } catch (e: Exception) {
+                        Log.e("RoadFacts", "無法開啟資料來源", e)
+                    }
+                }
+        }
     }
+
+    private fun loadRoadFacts(): List<RoadFact> {
+        return try {
+            val json = assets.open("road_facts.json")
+                .bufferedReader()
+                .use { it.readText() }
+
+            val array = JSONObject(json).getJSONArray("facts")
+
+            (0 until array.length()).map { index ->
+                val item = array.getJSONObject(index)
+
+                RoadFact(
+                    id = item.getString("id"),
+                    category = item.getString("category"),
+                    text = item.getString("text"),
+                    sourceUrl = item.optString("sourceUrl")
+                )
+            }
+        } catch (e: Exception) {
+            Log.e("RoadFacts", "讀取公路小知識失敗", e)
+            emptyList()
+        }
+    }
+
+    private fun showRandomRoadFact() {
+        if (roadFacts.isEmpty()) {
+            binding.cardRoadFact.visibility = View.GONE
+            return
+        }
+
+        val candidates = roadFacts.filter {
+            it.id != currentRoadFact?.id
+        }
+
+        val selected = (candidates.ifEmpty { roadFacts }).random()
+        currentRoadFact = selected
+
+        binding.tvRoadFactCategory.text = selected.category
+        binding.tvRoadFactText.text = selected.text
+
+        binding.btnRoadFactSource.visibility =
+            if (selected.sourceUrl.isBlank()) View.GONE else View.VISIBLE
+
+        binding.btnRoadFactNext.isEnabled = roadFacts.size > 1
+    }
+
+
+
     override fun onResume() {
         super.onResume()
 

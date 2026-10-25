@@ -85,15 +85,6 @@ class OilActivity : AppCompatActivity() {
                             throw IllegalStateException("四種油價資料不完整")
                         }
 
-                        // 先印在 Logcat，確認資料正確
-                        filteredPrices.forEach {
-                            Log.d(
-                                "OilPrice",
-                                "${it.productName}: ${it.price} 元/公升，生效日期：${it.effectiveDate}"
-                            )
-                        }
-
-                        Log.d("OilPrice", "成功取得 ${filteredPrices.size} 筆油價")
 
                         runOnUiThread {
                             updateOilPriceUI(filteredPrices)
